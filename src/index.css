@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Outfit', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-top: #ffffff;
+  --bg-bottom: #eff6ff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  
+  color-scheme: light;
+  color: var(--text-main);
+  background-color: var(--bg-top);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Premium airy gradient */
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  background-attachment: fixed;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  /* More vibrant professional gradient */
+  background: linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  filter: drop-shadow(0 10px 20px rgba(59, 130, 246, 0.1));
+}
+
+p.subtitle {
+  color: #64748b;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.08),
+    0 0 0 1px var(--border-subtle) inset;
+  margin-top: 3rem;
+  animation: fadeIn 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  background: #f1f5f9;
+  padding: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: #475569;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+td {
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  color: #1e293b;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #f8fafc;
+}
+
+.candidate-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 32px;
+  object-fit: cover;
+  border: 4px solid #f1f5f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+tr:hover .candidate-photo {
+  transform: scale(1.1) rotate(2deg);
+  border-color: #3b82f6;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+.candidate-symbol {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+tr:hover .candidate-symbol {
+  transform: translateY(-5px);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+}
+
+.vote-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.vote-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.vote-btn:active {
+  transform: translateY(0);
+}
+
+/* Modal Enhancements for Light Theme */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 3.5rem;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15);
+  max-width: 450px;
+  width: 90%;
+  animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-icon {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.2));
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.modal-message {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.close-btn {
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+
+/* For Laptops/Desktops (default is already good) */
+@media (max-width: 1024px) {
+  #root {
+    padding: 3rem 1.5rem;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+/* For Tablets */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  p.subtitle {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+  }
+
+  .table-container {
+    border-radius: 20px;
+  }
+
+  th {
+    padding: 1rem;
+    font-size: 0.7rem;
+  }
+
+  td {
+    padding: 1.2rem 1rem;
+  }
+
+  .candidate-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .candidate-symbol {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* For Mobile Phones */
+@media (max-width: 640px) {
+  #root {
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-top: 1rem;
+  }
+
+  p.subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Transform table to card layout for mobile */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin-bottom: 1.5rem;
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  td {
+    border: none;
+    padding: 0.5rem 0;
+    text-align: center;
+    position: relative;
+  }
+
+  td:before {
+    display: block;
+    font-weight: 700;
+    color: #94a3b8;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  td:nth-of-type(1):before { content: "S.No"; }
+  td:nth-of-type(2):before { content: "Candidate"; }
+  td:nth-of-type(3):before { content: "Photo"; }
+  td:nth-of-type(4):before { content: "Party Symbol"; }
+  td:nth-of-type(5):before { content: "Action"; }
+
+  .candidate-photo {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+  }
+
+  .candidate-symbol {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+
+  .vote-btn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+.share-btn-wa {
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+
+.share-btn-wa:hover {
+  background: #128c7e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+.copy-link-btn {
+  background: white;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  padding: 0.8rem 1.5rem;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.copy-link-btn:hover {
+  background: #2563eb;
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.vote-badge {
+  background: #f1f5f9;
+  color: #1e293b;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+tr:hover .vote-badge {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
